@@ -7,6 +7,7 @@ import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
+import Colors from '../constants/Colors';
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -68,10 +69,34 @@ SettingsStack.navigationOptions = {
 
 SettingsStack.path = '';
 
+const MoreStack = createStackNavigator(
+  {
+    More: SettingsScreen,
+  },
+  config
+);
+
+MoreStack.navigationOptions = {
+  tabBarLabel: 'More',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'} />
+  ),
+};
+
+MoreStack.path = '';
+
 const tabNavigator = createBottomTabNavigator({
   HomeStack,
   LinksStack,
   SettingsStack,
+  MoreStack,
+  X:MoreStack,
+  Q:MoreStack
+},
+{
+  tabBarOptions: {
+    activeTintColor: Colors.tabIconSelected
+  }
 });
 
 tabNavigator.path = '';

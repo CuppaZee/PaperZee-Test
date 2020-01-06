@@ -8,9 +8,34 @@ import {
   Text,
   TouchableOpacity,
   View,
+  FlatList,
 } from 'react-native';
+import { Card } from 'react-native-paper'
 
 import { MonoText } from '../components/StyledText';
+
+const DATA = [
+  {
+    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+    title: 'First Item',
+  },
+  {
+    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+    title: 'Second Item',
+  },
+  {
+    id: '58694a0f-3da1-471f-bd96-145571e29d72',
+    title: 'Third Item',
+  },
+];
+
+function Item({ title }) {
+  return (
+    <View style={styles.item}>
+      <Text style={styles.title}>{title}</Text>
+    </View>
+  );
+}
 
 export default function HomeScreen() {
   return (
@@ -51,6 +76,50 @@ export default function HomeScreen() {
             </Text>
           </TouchableOpacity>
         </View>
+
+        <View>
+        
+        <FlatList
+          style={{border:"1px solid black"}}
+          data={[
+            <FlatList
+              data={[
+                <Text style={{fontWeight:"bold",padding:"4px",paddingVertical:"2px"}}>Players</Text>,
+                <Text style={{padding:"4px",paddingVertical:"2px"}}>thegenie18</Text>,
+                <Text style={{padding:"4px",paddingVertical:"2px"}}>sohcah</Text>,
+                <Text style={{padding:"4px",paddingVertical:"2px"}}>purplecourgette</Text>,
+                <Text style={{padding:"4px",paddingVertical:"2px"}}>WriteAndMane</Text>,
+                <Text style={{padding:"4px",paddingVertical:"2px"}}>Maxi72</Text>
+              ]}
+              renderItem={({ item }) => item}
+              keyExtractor={item => item}
+            />,
+            <FlatList
+              data={[
+                1,2,3,4,5,6
+              ]}
+              style={{width:"300px"}}
+              horizontal={true}
+              renderItem={({ item }) => <FlatList
+                data={[
+                  <Text style={{fontWeight:"bold",padding:"4px",paddingVertical:"2px"}}>Players {item}</Text>,
+                  <Text style={{padding:"4px",paddingVertical:"2px"}}>thegenie18</Text>,
+                  <Text style={{padding:"4px",paddingVertical:"2px"}}>sohcah</Text>,
+                  <Text style={{padding:"4px",paddingVertical:"2px"}}>purplecourgette</Text>,
+                  <Text style={{padding:"4px",paddingVertical:"2px"}}>WriteAndMane</Text>,
+                  <Text style={{padding:"4px",paddingVertical:"2px"}}>Maxi72</Text>
+                ]}
+                renderItem={({ item }) => item}
+                keyExtractor={item => item}
+              />}
+              keyExtractor={item => item}
+            />
+          ]}
+          horizontal={true}
+          renderItem={({ item }) => item}
+          keyExtractor={item => item}
+        />
+        </View>
       </ScrollView>
 
       <View style={styles.tabBarInfoContainer}>
@@ -70,7 +139,7 @@ export default function HomeScreen() {
 }
 
 HomeScreen.navigationOptions = {
-  header: null,
+  header: null
 };
 
 function DevelopmentModeNotice() {
