@@ -28,8 +28,8 @@ HomeStack.navigationOptions = {
       focused={focused}
       name={
         Platform.OS === 'ios'
-          ? `ios-information-circle${focused ? '' : '-outline'}`
-          : 'md-information-circle'
+          ? `ios-home`
+          : 'md-home'
       }
     />
   ),
@@ -45,9 +45,9 @@ const LinksStack = createStackNavigator(
 );
 
 LinksStack.navigationOptions = {
-  tabBarLabel: 'Links',
+  tabBarLabel: 'Users',
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'} />
+    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-person' : 'md-person'} />
   ),
 };
 
@@ -77,21 +77,36 @@ const MoreStack = createStackNavigator(
 );
 
 MoreStack.navigationOptions = {
-  tabBarLabel: 'More',
+  tabBarLabel: 'Clans',
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'} />
+    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-people' : 'md-people'} />
   ),
 };
 
 MoreStack.path = '';
+
+const ToolsStack = createStackNavigator(
+  {
+    Tools: SettingsScreen,
+  },
+  config
+);
+
+ToolsStack.navigationOptions = {
+  tabBarLabel: 'Tools',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-hammer' : 'md-hammer'} />
+  ),
+};
+
+ToolsStack.path = '';
 
 const tabNavigator = createBottomTabNavigator({
   HomeStack,
   LinksStack,
   SettingsStack,
   MoreStack,
-  X:MoreStack,
-  Q:MoreStack
+  ToolsStack
 },
 {
   tabBarOptions: {
