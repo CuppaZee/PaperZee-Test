@@ -1,3 +1,5 @@
+# This was an experimental app. Please see our main Monorepo for our actual app.
+
 # CuppaZee Client
 The Next-Generation CuppaZee Client, written in JavaScript with React Native and [Expo](https://expo.io/).
 
